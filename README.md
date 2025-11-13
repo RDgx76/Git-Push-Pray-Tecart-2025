@@ -1,1 +1,0 @@
-# Git-Push-Pray-Tecart-2025
