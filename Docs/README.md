@@ -4,8 +4,8 @@
 ## 👥 Anggota Kelompok
 | Nama | NIM | Peran |
 |------|-----|--------|
-| Nama 1 | 25XXXXXXXX | Backend Developer |
-| Nama 2 | 25XXXXXXXX | Frontend Developer |
+| Nama 1 | 250 | Frontend Developer |
+| I Komang Ardi Wijaya | 2505551073 | Backend Developer |
 | Nama 3 | 25XXXXXXXX | Fullstack (opsional) |
 
 ## 💡 Deskripsi Project
