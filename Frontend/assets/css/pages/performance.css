@@ -1,0 +1,9 @@
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.performance-chart {
+  height: 320px;
+}

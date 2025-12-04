@@ -1,0 +1,15 @@
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  margin-bottom: 32px;
+}
+
+.chart-card {
+  height: 340px;
+}
+
+.metric {
+  font-size: 28px;
+  font-weight: 700;
+}

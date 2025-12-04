@@ -1,0 +1,11 @@
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}

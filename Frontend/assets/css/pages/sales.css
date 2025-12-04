@@ -1,0 +1,17 @@
+.sales-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.cart-list {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.payment-box {
+  padding: 20px;
+  background: var(--card-soft);
+  border-radius: var(--radius-lg);
+}

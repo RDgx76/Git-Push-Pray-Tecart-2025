@@ -1,0 +1,9 @@
+.staff-list {
+  margin-top: 22px;
+}
+
+.staff-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

@@ -1,0 +1,10 @@
+.settings-section {
+  background: var(--card);
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 20px;
+}
+
+.settings-section h3 {
+  margin-bottom: 14px;
+}

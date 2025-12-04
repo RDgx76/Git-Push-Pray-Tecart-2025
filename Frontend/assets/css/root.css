@@ -1,0 +1,67 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* THEME VARIABLES */
+:root {
+  /* COLOR SYSTEM DARK MODE */
+  --bg: #0f0f14;
+  --bg-soft: #14141c;
+  --card: #1a1a23;
+  --card-soft: #22222e;
+  --border: #2a2a38;
+
+  --primary: #6c63ff;
+  --primary-soft: #918bff;
+  --accent: #00e5ff;
+  --danger: #ff4b4b;
+  --success: #36d98e;
+
+  --text: #e3e3e3;
+  --text-soft: #b8b8b8;
+  --text-muted: #7a7a7a;
+
+  /* SIZES */
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  --shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+
+  /* TRANSITIONS */
+  --fast: 120ms;
+  --normal: 260ms;
+  --slow: 400ms;
+}
+
+/* LIGHT MODE */
+[data-theme="light"] {
+  --bg: #f8f8ff;
+  --bg-soft: #ffffff;
+  --card: #ffffff;
+  --card-soft: #f4f4ff;
+  --border: #dcdcec;
+
+  --text: #24243b;
+  --text-soft: #4b4b62;
+  --text-muted: #7a7a8c;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 8px;
+}
