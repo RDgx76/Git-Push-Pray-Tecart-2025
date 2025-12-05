@@ -4,9 +4,11 @@
 <main class="settings-page">
   <h1>Pengaturan Toko</h1>
 
-  <form action="../../Backend/controllers/StoreSettingsController.php" method="POST">
+  <!-- FIX: Mengarah ke Router index.php dengan controller store -->
+  <form action="../../Backend/index.php?controller=store&action=update" method="POST">
     <label>Nama Toko</label><input type="text" name="store_name">
-    <label>Alamat Toko</label><input type="text" name="store_address">
+    <label>Alamat Toko</label><input type="text" name="address">
+    <label>Nomor Telepon</label><input type="text" name="phone">
     <label>Persentase Pajak (%)</label><input type="number" name="tax">
     <label>Header Nota</label><textarea name="receipt_header"></textarea>
 

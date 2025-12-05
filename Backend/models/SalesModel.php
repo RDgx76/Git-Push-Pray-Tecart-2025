@@ -3,26 +3,36 @@ $db = include __DIR__ . "/../core/database.php";
 
 class SalesModel {
 
-    public static function createSale($data) {
+    public static function createTransaction($data) {
         global $db;
-        $stmt = $db->prepare("INSERT INTO sales (product_id, qty, total_price, cashier_id, date) VALUES (?, ?, ?, ?, NOW())");
+
+        $stmt = $db->prepare("
+            INSERT INTO penjualan
+            (total, diskon, pajak, metode_pembayaran, uang_diterima, kembalian, id_pegawai)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        ");
+
         return $stmt->execute([
-            $data['product_id'], 
-            $data['qty'], 
-            $data['total_price'], 
-            $data['cashier_id']
+            $data["total"],
+            $data["discount"],
+            $data["tax"],          // ← ditambahkan
+            $data["payment_method"],
+            $data["received"],
+            $data["change"],
+            $data["staff_id"]
         ]);
     }
 
     public static function getDailySales() {
         global $db;
-        $stmt = $db->query("SELECT * FROM sales WHERE DATE(date) = CURDATE()");
-        return $stmt->fetchAll();
-    }
 
-    public static function getHistory() {
-        global $db;
-        $stmt = $db->query("SELECT * FROM sales ORDER BY id DESC");
-        return $stmt->fetchAll();
+        return $db->query("
+            SELECT SUM(total) AS total_sales,
+                   SUM(diskon) AS total_discount,
+                   SUM(pajak) AS total_tax,
+                   COUNT(*) AS count
+            FROM penjualan
+            WHERE DATE(dibuat_pada) = CURDATE()
+        ")->fetch();
     }
 }

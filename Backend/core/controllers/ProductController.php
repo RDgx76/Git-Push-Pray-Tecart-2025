@@ -3,47 +3,31 @@ include "../core/session.php";
 requireLogin();
 
 include "../models/ProductModel.php";
-include "../utils/sanitizer.php";
-include "../utils/validator.php";
-include "./UploadController.php";
+include "../core/controllers/UploadController.php";
 
 class ProductController {
 
-    public static function create() {
-        if (!required($_POST['name']) || !isNumber($_POST['price'])) {
-            die("Invalid input");
+    public static function update() {
+
+        $id = $_POST["id"];
+
+        $image = $_POST["old_image"] ?? null;
+
+        if (isset($_FILES["image"]) && $_FILES["image"]["error"] === 0) {
+            $image = UploadController::uploadImage($_FILES["image"], "products");
         }
 
-        $image = UploadController::uploadImage($_FILES['image'], "products");
-
-        ProductModel::create([
-            "name" => clean($_POST['name']),
-            "price" => clean($_POST['price']),
-            "stock" => clean($_POST['stock']),
-            "category" => clean($_POST['category']),
-            "image" => $image
-        ]);
-
-        header("Location: ../routes/admin.php?page=inventory");
-    }
-
-    public static function update() {
-        $id = $_POST['id'];
-
         ProductModel::update($id, [
-            "name" => clean($_POST['name']),
-            "price" => clean($_POST['price']),
-            "stock" => clean($_POST['stock']),
-            "category" => clean($_POST['category'])
+            "name"           => $_POST["name"],
+            "price"          => $_POST["price"],
+            "purchase_price" => $_POST["purchase_price"],
+            "stock"          => $_POST["stock"],
+            "category"       => $_POST["category"],
+            "description"    => $_POST["description"],
+            "barcode"        => $_POST["barcode"],
+            "image"          => $image
         ]);
 
-        header("Location: ../routes/admin.php?page=inventory");
-    }
-
-    public static function delete() {
-        $id = $_GET['id'];
-        ProductModel::delete($id);
-
-        header("Location: ../routes/admin.php?page=inventory");
+        header("Location: ../index.php?controller=admin&action=inventory");
     }
 }

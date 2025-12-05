@@ -7,22 +7,29 @@ include "../utils/sanitizer.php";
 
 class SalesController {
 
-    public static function addItem() {
-        $data = [
-            "product_id"  => clean($_POST["product_id"]),
-            "qty"         => clean($_POST["qty"]),
-            "total_price" => clean($_POST["total_price"]),
-            "cashier_id"  => $_SESSION["user_id"]
-        ];
+    // Method ini dipanggil oleh AJAX sales.js (route: save-transaction.php)
+    public static function saveTransaction() {
+        // Baca JSON input karena JS mengirim JSON, bukan form data
+        $json = file_get_contents('php://input');
+        $data = json_decode($json, true);
 
-        SalesModel::createSale($data);
+        if (!$data || empty($data['items'])) {
+            http_response_code(400);
+            echo json_encode(["success" => false, "message" => "Keranjang kosong"]);
+            exit;
+        }
 
-        header("Location: ../routes/kasir.php?page=sales");
-    }
+        $receipt_id = SalesModel::createTransaction($data);
 
-    public static function cancelCart() {
-        // (cart berbasis session)
-        unset($_SESSION['cart']);
-        header("Location: ../routes/kasir.php?page=sales");
+        if ($receipt_id) {
+            echo json_encode([
+                "success" => true, 
+                "receipt_id" => $receipt_id,
+                "message" => "Transaksi berhasil"
+            ]);
+        } else {
+            http_response_code(500);
+            echo json_encode(["success" => false, "message" => "Gagal menyimpan database"]);
+        }
     }
 }

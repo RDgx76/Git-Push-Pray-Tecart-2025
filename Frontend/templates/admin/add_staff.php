@@ -4,12 +4,13 @@
 <main class="add-staff-page">
   <h1>Tambah Pegawai Baru</h1>
 
-  <form action="../../Backend/controllers/StaffController.php" method="POST">
+  <!-- FIX: Mengarah ke Router index.php dengan controller staff -->
+  <form action="../../Backend/index.php?controller=staff&action=create" method="POST">
 
     <label>Nama Pegawai</label>
     <input type="text" name="name" required>
 
-    <label>Email</label>
+    <label>Email (Username)</label>
     <input type="email" name="email" required>
 
     <label>Nomor Telepon</label>

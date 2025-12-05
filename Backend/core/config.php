@@ -7,7 +7,7 @@ return [
 
     // Database
     "db_host"       => "localhost",
-    "db_name"       => "bytemart_db",
+    "db_name"       => "bytemart", // DIPERBAIKI: Sesuai dengan database.sql
     "db_user"       => "root",
     "db_pass"       => "",
 
